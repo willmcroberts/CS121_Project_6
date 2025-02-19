@@ -10,8 +10,8 @@ void testStudent();
 int main(){
   std::cout << "Hello!" << std::endl;
   testAddress();
-  testDate();
-  testStudent();
+ //testDate();
+ //testStudent();
   return 0;
 } // end main
 
@@ -20,7 +20,7 @@ void testAddress(){
   a.init("123 W Main St", "Muncie", "IN", "47303");
   a.printAddress();
 } // end testAddress
-
+/*
 void testDate(){
  Date d;
  d.init("01/27/1997");
@@ -36,3 +36,5 @@ void testStudent(){
   std::cout << student->getLastFirst();
   delete student;
 } // end testStudent
+
+*/
