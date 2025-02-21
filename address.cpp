@@ -18,5 +18,5 @@ void Address::init(std::string street, std::string city, std::string state, std:
 } // End init
 
 void Address::printAddress() {
-	std::cout << "Address: " << street << ", " << city << ", " << state << ", " << zip << std::endl;
+	std::cout << street << ", " << city << ", " << state << ", " << zip << std::endl;
 } // End printAddress

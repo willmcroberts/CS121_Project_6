@@ -1,7 +1,6 @@
 // main.cpp
 
 #include <iostream>
-#include "date.h"
 #include "address.h"
 #include "student.h"
 
@@ -13,7 +12,7 @@ int main(){
   std::cout << "Hello!" << std::endl;
   testAddress();
   testDate();
- //testStudent();
+  testStudent();
   return 0;
 } // end main
 

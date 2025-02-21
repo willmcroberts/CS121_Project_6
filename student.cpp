@@ -1,7 +1,7 @@
 // student.cpp
 #include <iostream>
+#include <sstream>
 #include "student.h"
-#include "date.h"
 #include "address.h"
 
 Student::Student() {
@@ -14,10 +14,6 @@ Student::Student() {
 	creditHours = 0;
 } // End constructor
 
-Student::Student(std::string studentString) {
-	Student::init(studentString);
-}
-
 Student::~Student() {
 	delete dob;
 	delete expectedGrad;
@@ -27,10 +23,41 @@ Student::~Student() {
 void Student::init(std::string studentString) {
 	Student::studentString = studentString;
 
+	std::stringstream ss;
+	std::string street;
+	std::string city;
+	std::string state;
+	std::string zip;
+	std::string dobString;
+	std::string expectedGradString;
+	std::string creditHoursString;
+
+	ss.clear();
+	ss.str(studentString);
+
+	getline(ss, fName, ',');
+	getline(ss, lName, ',');
+	getline(ss, street, ',');
+	getline(ss, city, ',');
+	getline(ss, state, ',');
+	getline(ss, zip, ',');
+	getline(ss, dobString, ',');
+	getline(ss, expectedGradString, ',');
+	getline(ss, creditHoursString, ',');
+
+	ss.clear();
+	ss.str("");
+
+	address->init(street, city, state, zip);
+	dob->init(dobString);
+	expectedGrad->init(expectedGradString);
+
+	Student::creditHours = stoi(creditHoursString);
+
 } // End init
 
 void Student::printStudent() {
-	std::cout << "Student: " << fName << " " << lName << std::endl;
+	std::cout << fName << " " << lName << std::endl;
 	address -> printAddress();
 
 	std::cout << "DOB: ";

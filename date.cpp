@@ -38,5 +38,5 @@ void Date::init(std::string dateString) {
 } // end init
 
 void Date::printDate() {
-	std::cout << "Date: " <<  Date::dateString << std::endl;
+	std::cout <<  Date::dateString << std::endl;
 } // end printDate
