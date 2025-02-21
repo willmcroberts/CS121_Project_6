@@ -21,3 +21,6 @@ clean:
 
 debug:
 	gdb Heap
+
+valgrind: program
+	valgrind --leak-check=full ./Heap
