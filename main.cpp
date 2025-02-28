@@ -1,12 +1,21 @@
 // main.cpp
 
 #include <iostream>
+#include <vector>
+#include <fstream>
+#include <sstream>
 #include "address.h"
 #include "student.h"
 
 void testAddress();
 void testDate();
 void testStudent();
+void loadStudents(std::vector<Student*>&students);
+void printStudents(std::vector<Student*>&students);
+void showStudents(std::vector<Student*>&students);
+void findStudents(std::vector<Student*>&students);
+void delStudents(std::vector<Student*>&students);
+void menu();
 
 int main(){
   std::cout << "Hello!" << std::endl;
@@ -39,3 +48,13 @@ void testStudent(){
 } // end testStudent
 
 
+void findStudents(std::vector<Student*>&students) {
+	std::string target;
+	bool notFounf = true;
+	std::cout << "List of students: ";
+	getline(std::cin, target);
+	for (Students* s: student) {
+		std::string lName = s->getLastName();
+		if (lName.find(target) //here
+	} // End for loop
+} // End finStudents
