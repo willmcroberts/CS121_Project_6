@@ -15,14 +15,35 @@ void printStudents(std::vector<Student*>&students);
 void showStudents(std::vector<Student*>&students);
 void findStudents(std::vector<Student*>&students);
 void delStudents(std::vector<Student*>&students);
-void menu();
+std::string menu();
 
-int main(){
-  std::cout << "Hello!" << std::endl;
-  testAddress();
-  testDate();
-  testStudent();
-  return 0;
+int main() {
+	std::vector<Student*> students;
+ 	//testAddress();
+ 	//testDate();
+ 	//testStudent();
+	std::string input;
+	bool keepGoing = true;
+
+	loadStudents(students);
+	
+	while (keepGoing) {
+		input = menu();
+
+		if (input == "0") {
+			keepGoing = false;
+		} else if (input == "1") {
+			printStudents(students);
+		} else if (input == "2") {
+			showStudents(students);
+		} else {
+			findStudents(students);
+		} // End elif statement
+	} // End while loop
+	
+	delStudents(students);
+	
+ 	return 0;
 } // end main
 
 void testAddress(){
@@ -47,14 +68,62 @@ void testStudent(){
   delete student;
 } // end testStudent
 
+void loadStudents(std::vector<Student*>&students) {
+	std::string filename = "students.csv";
+	std::ifstream file(filename);
+	std::string current;
+	std::stringstream ss;
+
+	while (getline(file, current)) {
+		Student* student = new Student();
+		student -> init(current);
+		students.push_back(student);
+	} // End while loop
+	
+	file.close();
+
+} // End loadStudents
+
+void printStudents(std::vector<Student*>&students) {
+	for (auto &student: students) {
+		student -> printStudent();
+	} // End for loop
+	std::cout << std::endl;
+} // End printStudents
+
+void showStudents(std::vector<Student*>&students) {
+	for (auto &student: students) {
+		std::cout << student -> getLastFirst() << " | " << student -> getCreditHours() << std::endl;
+	} // End for loop
+} // End showStudents
 
 void findStudents(std::vector<Student*>&students) {
 	std::string target;
-	bool notFounf = true;
-	std::cout << "List of students: ";
-	getline(std::cin, target);
-	for (Students* s: student) {
-		std::string lName = s->getLastName();
-		if (lName.find(target) //here
+	std::cout << "Enter last name: ";
+	std::cin >> target;
+	std::cout << std::endl;
+
+	for (auto &student: students) {
+		if (student -> getLastName().find(target) != std::string::npos) {
+			student -> printStudent();
+		} // End if statement
 	} // End for loop
-} // End finStudents
+} // End findStudents
+
+void delStudents(std::vector<Student*>&students) {
+	for (auto &student: students) {
+		delete student;
+	} // End for loop
+	students.clear();
+} // End delStudents
+
+std::string menu() {
+	std::string input;
+	std::cout << "=====================================================" << std::endl;
+	std::cout << "0) Quit" << std::endl << "1) Student info" << std::endl << "2) Show Students" << std::endl << "3) Find Student" << std::endl;
+	std::cout << "Enter option (0-3): ";
+	std::cin >> input;
+	std::cout << "=====================================================" << std::endl;
+	
+	return input;
+} // End menu
